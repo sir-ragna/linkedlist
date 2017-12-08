@@ -21,7 +21,7 @@ int main(int argc, char ** argv)
     sli_list_push((sli_list **) &ll, 1);
 
     sli_list_print(ll);
-    printf("Amount: %d", sli_list_count(ll));
+    printf("Amount: %d\n", sli_list_count(ll));
 
     sli_list_delete_item((sli_list **) &ll);
     sli_list_delete_item((sli_list **) &ll);
@@ -30,7 +30,6 @@ int main(int argc, char ** argv)
     sli_list_delete_item((sli_list **) &ll);
     sli_list_delete_item((sli_list **) &ll);
     sli_list_delete_item((sli_list **) &ll); // One too many :D
-
 
     return 0;
 }

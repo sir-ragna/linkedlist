@@ -53,44 +53,41 @@ char * sli_list_to_string(sli_list * ll)
     int i = 1; /* Start from 1 because log10 of '0' is -infinite */
 
     while (1) {
-        int val = ll->value;
-        char * ll_value_s;
+        int item_value = ll->value;
+        char * item_string;
 
         /* Calculate the length these integers have
          * when they are converted to characters. */
-        int val_char_length = (val < 0 ? 
-            ((int) floor(log10(abs(val)) + 1)) + 1 : /* Add 1 char for the minus sign '-' */
-            (int) floor(log10(val) + 1)
+        int val_char_length = (item_value < 0 ? 
+            ((int) floor(log10(abs(item_value)) + 1)) + 1 : 
+                /* ^ Add 1 char for the minus sign '-' */
+            (int) floor(log10(item_value) + 1)
         );
-        int i_char_length = (int) floor(log10(i) + 1);
+        int item_str_len = (
+            format_len + /* Length of the format string */
+            val_char_length + /* Length of the value integer in char */
+            (int) floor(log10(i) + 1) + /* Length of the index integer */
+            1 /* Zero byte terminator */
+        );
 
-        ll_value_s = malloc(
-            format_len +       /* Length of the format string */
-            val_char_length +  /* Length of the value integer in char */
-            i_char_length +    /* Length of the index integer in char */
-            1                  /* Zero byte terminator */
-        );
+        item_string = malloc(item_str_len);
         
         /* Append & format the string to our result */
-        sprintf(ll_value_s, 
+        sprintf(item_string, 
                 format, 
                 i - 1,  /* We subtract 1 to enumerate from 0 */
-                val);
+                item_value);
 
-        int new_str_size = (
-            strlen(result) +   /* Current str Length */
-            format_len +       /* Length of the format string */
-            val_char_length +  /* Length of the value integer in char */
-            i_char_length +    /* Length of the index integer in char */
-            1                  /* Zero byte terminator */
-        );
+        /* Realocate memory for our result string */
+        result = (char *) realloc(result, (
+            strlen(result) + /* Current str length */
+            item_str_len     /* Length of this item str 
+                              * (terminator included) */
+        ));
 
-        /* Realocate memory for our our string */
-        result = (char *) realloc(result, new_str_size);
+        strcat(result, item_string);
 
-        strcat(result, ll_value_s);
-
-        free(ll_value_s);
+        free(item_string);
 
         if (ll->next) {
             i++;
