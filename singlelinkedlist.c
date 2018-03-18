@@ -56,18 +56,13 @@ char * sli_list_to_string(sli_list * ll)
         int item_value = ll->value;
         char * item_string;
 
-        /* Calculate the length these integers have
-         * when they are converted to characters. */
-        int val_char_length = (item_value < 0 ? 
-            ((int) floor(log10(abs(item_value)) + 1)) + 1 : 
-                /* ^ Add 1 char for the minus sign '-' */
-            (int) floor(log10(item_value) + 1)
-        );
+        int val_char_length = int_length(item_value);
+
         int item_str_len = (
-            format_len + /* Length of the format string */
+            format_len +      /* Length of the format string */
             val_char_length + /* Length of the value integer in char */
-            (int) floor(log10(i) + 1) + /* Length of the index integer */
-            1 /* Zero byte terminator */
+            int_length(i) +   /* Length of the index integer */
+            1   /* Zero byte terminator */
         );
 
         item_string = malloc(item_str_len);

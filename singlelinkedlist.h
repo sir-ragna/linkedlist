@@ -7,6 +7,8 @@
 #include <assert.h>
 #include <math.h>
 
+#include "linkedlistutils.h"
+
 typedef struct single_linked_int_list {
     int value;
     struct single_linked_int_list * next;

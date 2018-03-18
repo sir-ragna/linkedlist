@@ -10,6 +10,8 @@
             "args": [
                 "-g",
                 "singlelinkedlist.c",
+                "doublelinkedlist.c",
+                "linkedlistutils.c",
                 "main.c",
                 "-Wall",
                 "-lm",
