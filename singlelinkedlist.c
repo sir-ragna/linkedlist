@@ -99,7 +99,7 @@ void sli_list_print(sli_list * ll)
 {
     char * str;
     str = sli_list_to_string(ll);
-    printf("%s", str);
+    printf("%s\n", str);
     free(str);
 }
 

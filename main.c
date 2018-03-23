@@ -6,7 +6,7 @@
 
 int main(int argc, char ** argv)
 {
-    /* Example usage of the single linked integer list */
+    printf("Example usage of the single linked integer list\n");
     sli_list *  ll;
     ll = sli_list_new(999999);
     sli_list_push((sli_list **) &ll, 22);
@@ -23,7 +23,7 @@ int main(int argc, char ** argv)
     sli_list_push((sli_list **) &ll, 1);
 
     sli_list_print(ll);
-    printf("Amount: %d\n", sli_list_count(ll));
+    printf("Amount: %d items\n", sli_list_count(ll));
 
     sli_list_delete_item((sli_list **) &ll);
     sli_list_delete_item((sli_list **) &ll);
@@ -33,7 +33,7 @@ int main(int argc, char ** argv)
     sli_list_delete_item((sli_list **) &ll);
     sli_list_delete_item((sli_list **) &ll); // One too many :D
 
-    /* Example usage of the double linked integer list */
+    printf("Example usage of the double linked integer list\n");
     dli_list * dlli;
     dlli = dli_list_new(4444);
     dli_list_push((dli_list **) &dlli, 1234);
@@ -41,6 +41,9 @@ int main(int argc, char ** argv)
     dli_list_push((dli_list **) &dlli, 0xFF);
     dli_list_push((dli_list **) &dlli, 1);
     dli_list_push((dli_list **) &dlli, -0xC0);
+
+    printf("Amount: %d items\n", dli_list_count(dlli));
+    dli_list_print(dlli);
 
     dli_list_pop((dli_list **) &dlli);
     dli_list_pop((dli_list **) &dlli);
