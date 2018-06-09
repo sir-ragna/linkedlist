@@ -4,7 +4,6 @@
 #include "doublelinkedlist.h"
 
 /* Used to test the other linked list code */
-
 int main(int argc, char ** argv)
 {
     printf("Example usage of the single linked integer list\n");
