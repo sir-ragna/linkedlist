@@ -3,6 +3,7 @@
 #include "singlelinkedlist.h"
 #include "doublelinkedlist.h"
 
+/* Used to test the other linked list code */
 
 int main(int argc, char ** argv)
 {
@@ -53,11 +54,30 @@ int main(int argc, char ** argv)
     dli_list_pop((dli_list **) &dlli);
     dli_list_pop((dli_list **) &dlli); 
     /* ^ One too many. Doesn't crash, needs logging though. 
-     * Maybe I should add a macro that allows choice here.
+     * Maybe I should add a macro you to choose between logging
+     * or crashing.
      */
 
     assert(dlli == NULL);
     printf("%s\n", "The double linked integer list has been cleaned up.");
     
+    char retstr[] = "Hello <o(°_-_°)ô\r\n";
+
+    printf(retstr);
+    
+
+    sls_list * mystringlinkedlist = NULL;
+    mystringlinkedlist = sls_list_new(retstr, sizeof(retstr));
+
+    char * azert = NULL;
+    size_t len = 0;
+    sls_list_pop((sls_list **) &mystringlinkedlist, azert, len);
+
+    sls_list_push((sls_list **) &mystringlinkedlist, azert, len);
+    sls_list_push((sls_list **) &mystringlinkedlist, "Foo Bar", sizeof("Foo Bar"));
+    sls_list_push((sls_list **) &mystringlinkedlist, azert, len);
+
+
+
     return 0;
 }

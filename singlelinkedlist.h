@@ -14,6 +14,22 @@ typedef struct single_linked_int_list {
     struct single_linked_int_list * next;
 } sli_list;
 
+typedef struct single_linked_str_list {
+    struct single_linked_str_list * next;
+    char * value;
+    size_t size;
+} sls_list;
+
+sls_list * sls_list_new(char * value, size_t size);
+void sls_list_push(sls_list ** ll, char * value, size_t size);
+void sls_list_pop(sls_list ** ll, char * result, size_t * rsize);
+void sls_list_delete_item(sls_list ** ll);
+void sls_list_delete_all(sls_list ** ll);
+char * sls_list_to_string(sls_list * ll);
+void sli_list_print(sli_list * ll);
+int sls_list_count(sli_list * ll);
+
+
 /* Allocate a new single linked integer list. */
 sli_list * sli_list_new(const int value);
 

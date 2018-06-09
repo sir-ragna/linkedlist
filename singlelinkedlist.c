@@ -1,6 +1,61 @@
 
 #include "singlelinkedlist.h"
 
+sls_list * sls_list_new(char * value, size_t size)
+{
+    sls_list * ll;
+    ll = malloc(sizeof(sls_list));
+
+    assert(ll != NULL);
+
+    ll->value = value;
+    ll->size = size;
+    ll->next = NULL;
+    return ll;
+}
+
+void sls_list_push(sls_list ** ll, char * value, size_t size)
+{
+    sls_list * new_ll;
+    new_ll = sls_list_new(value, size);
+
+    new_ll->next = *ll;
+    *ll = new_ll;
+}
+
+void sls_list_pop  (sls_list ** ll, char * value, size_t * size)
+{
+    sls_list * current_head;
+    current_head = *ll;
+
+    if (*ll != NULL) {
+        value = current_head->value;
+        
+        size = &current_head->size;
+        *ll = current_head->next;
+        free(current_head);
+    }
+}
+/*
+char * sls_list_to_string(sls_list * ll)
+{
+    char * format = "[%d] => %s\n";
+    int format_len = strlen(format);
+
+    char * result;
+    result = (char *)malloc(1);
+    result[0] = 0x00;
+    int i = 1; 
+
+    while(1) {
+        int item_value = ll->value;
+        char * item_value;
+
+        int val_char_length = int_length(item_value); 
+
+    }
+}
+*/
 sli_list * sli_list_new(const int value)
 {
     sli_list * ll;
